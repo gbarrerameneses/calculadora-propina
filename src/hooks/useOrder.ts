@@ -24,9 +24,16 @@ export default function userOrder() {
         }
     }
 
+    // Función eliminar articulos orden
+    const removeItem = (id: MenuItem['id']) => {
+        // setOrder((prevOrder) => prevOrder.filter((order) => order.id !== id))
+        setOrder(order.filter(item => item.id !== id)) //cualquiera de las dos sirve
+    }
+
     // order y addItem se mandan a App.tsx
     return {
         order,
-        addItem
+        addItem,
+        removeItem
     }
 }
