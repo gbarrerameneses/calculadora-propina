@@ -30,7 +30,9 @@ function App() {
           order={order} // pasa el prop a OrderContents
           removeItem={removeItem}
           />
-          <OrderTotals/>
+          <OrderTotals
+          order={order}
+          />
         </div>
       </main>
     </>
