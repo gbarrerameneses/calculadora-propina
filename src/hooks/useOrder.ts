@@ -19,11 +19,12 @@ export default function userOrder() {
 
         } else {
             // const newItem : OrderItem = {...item, quantity: 1} // podríamos castear la variable con OrderItem, ya que estamos haciendo una copia del objeto
-            const newItem = {...item, quantity: 1}
+            const newItem = {...item, quantity: 1} // incrementa la cantidad del producto
             setOrder([...order, newItem]) // pasamos la copia de ese ojeto a la función setOrder
         }
     }
 
+    // order y addItem se mandan a App.tsx
     return {
         order,
         addItem
