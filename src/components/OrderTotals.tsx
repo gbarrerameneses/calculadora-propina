@@ -7,7 +7,7 @@ type OrderTotalsProps = {
     tip: number
 }
 
-export default function OrderTotals( {order, tip} : OrderTotalsProps ) {
+export default function OrderTotals( {order, tip } : OrderTotalsProps ) {
     // useMemo para evitar renders adicionales
     /* Función para calcular el subtotal
     // pasamos dos parametros, total y item (que es el elemento donde estamos iterando)
@@ -15,10 +15,15 @@ export default function OrderTotals( {order, tip} : OrderTotalsProps ) {
     // por lo que multiplicamos la cantidad por el precio e inicializamos en 0
     */
     const subtotalAmount = useMemo(() => order.reduce((total, item) => total + (item.quantity * item.price), 0), [order])
-    /* Se ejecuata cuando cambie tip u order
+    /* Se ejecuata cuando cambien las dependencias de tip u order
     // multiplicamos subtotalAmount por (la propina) tip
     */
     const tipAmount = useMemo(() => subtotalAmount * tip, [tip, order])
+    /* Se ejecuata cuando cambien las dependencias de tip u order
+    // sumamos subtotalAmount más tipAmount
+    */
+    const totalAmount = useMemo(() => subtotalAmount + tipAmount, [tip, order])
+
     return (
         <>
             <div className="space-y-3">
@@ -30,7 +35,7 @@ export default function OrderTotals( {order, tip} : OrderTotalsProps ) {
                     <span className="font-bold">{formatCurrency (tipAmount)}</span>
                 </p>
                 <p>Total a pagar: {''}
-                    <span className="font-bold">$0</span>
+                    <span className="font-bold">{formatCurrency (totalAmount)}</span>
                 </p>
             </div>
 
