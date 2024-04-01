@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react"
+
 const tipOptions = [
     {
       id: 'tip-10',
@@ -16,7 +18,12 @@ const tipOptions = [
     },
   ]
 
-export default function TipPercentageForm() {
+  type TipPercentageFormProps = {
+    // setTip: React.Dispatch<React.SetStateAction<number>> // Ambas líneas son correctas
+    setTip: Dispatch<SetStateAction<number>> // importamos { Dispatch } de react al igual que { SetStateAction }
+  }
+
+export default function TipPercentageForm( {setTip} : TipPercentageFormProps ) {
     return (
         <div>
             <h2 className="font-black text-2xl">Propina:</h2>
@@ -30,6 +37,11 @@ export default function TipPercentageForm() {
                         type="radio"
                         name="tip"
                         value={tip.value}
+                        onChange={ e => setTip( +e.target.value ) }
+                        /* accedemos al valor del input,
+                        // es una nueva forma con el signo de +
+                        // ya que lo convierte a number porque
+                        // es como lo estamos pasando*/
                         />
                     </div>
                 ))}

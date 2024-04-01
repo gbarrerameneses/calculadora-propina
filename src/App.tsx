@@ -7,7 +7,7 @@ import TipPercentageForm from "./components/TipPercentageForm";
 
 function App() {
 
-  const { order, addItem, removeItem } = useOrder() // recibe del custom hook useOrder
+  const { order, addItem, removeItem, tip, setTip } = useOrder() // recibe del custom hook useOrder
 
   return (
     <>
@@ -33,11 +33,12 @@ function App() {
           />
 
           <TipPercentageForm
-     
+          setTip={setTip} // pasamos la función que cambia tip
           />
 
           <OrderTotals
           order={order}
+          tip={tip} // pasamos la propina
           />
         </div>
       </main>

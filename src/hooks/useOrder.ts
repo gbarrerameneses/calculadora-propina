@@ -3,6 +3,7 @@ import type { MenuItem, OrderItem } from "../types";
 
 export default function userOrder() {
     const [order, setOrder] = useState<OrderItem[]>([]) // Generic Type
+    const [tip, setTip] = useState(0) // Creamos un nuevo estado para la propina
 
     // Función para agregar producto del menú al consumo
     const addItem = (item : MenuItem) => { // tipando la función desde types
@@ -33,6 +34,8 @@ export default function userOrder() {
     // order y addItem se mandan a App.tsx
     return {
         order,
+        tip,
+        setTip,
         addItem,
         removeItem
     }
