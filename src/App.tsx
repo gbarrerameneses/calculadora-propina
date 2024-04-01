@@ -3,6 +3,7 @@ import  MenuItem  from "./components/MenuItem"
 import useOrder from "./hooks/useOrder"
 import OrderContents from "./components/OrderContents"
 import OrderTotals from "./components/OrderTotals";
+import TipPercentageForm from "./components/TipPercentageForm";
 
 function App() {
 
@@ -30,6 +31,11 @@ function App() {
           order={order} // pasa el prop a OrderContents
           removeItem={removeItem}
           />
+
+          <TipPercentageForm
+     
+          />
+
           <OrderTotals
           order={order}
           />
