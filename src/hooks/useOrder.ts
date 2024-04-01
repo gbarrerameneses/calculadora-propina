@@ -31,12 +31,19 @@ export default function userOrder() {
         setOrder(order.filter(item => item.id !== id)) //cualquiera de las dos sirve
     }
 
+    // Función para reiniciar la orden (el listado de Consumo)
+    const placeOrder = () => {
+        setOrder([])
+        setTip(0)
+    }
+
     // order y addItem se mandan a App.tsx
     return {
         order,
         tip,
         setTip,
         addItem,
-        removeItem
+        removeItem,
+        placeOrder
     }
 }

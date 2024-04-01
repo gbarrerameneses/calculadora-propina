@@ -11,9 +11,7 @@ export default function OrderContents({order, removeItem} : OrderContentProps) {
         <div>
             <h2 className="font-black text-4xl">Consumo</h2>
             <div className="space-y-3 mt-10">
-            {order.length === 0 ?
-            <p className="text-center">La orden esta vacía</p>
-            : (
+            {
                 // iteramos lo que viene de order
                 order.map(item => (
                     <div
@@ -31,7 +29,6 @@ export default function OrderContents({order, removeItem} : OrderContentProps) {
                         </button>
                     </div>
                     ))
-            )
             }
             </div>
         </div>

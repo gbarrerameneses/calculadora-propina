@@ -4,10 +4,11 @@ import { formatCurrency } from "../helpers"
 
 type OrderTotalsProps = {
     order: OrderItem[],
-    tip: number
+    tip: number,
+    placeOrder: () => void
 }
 
-export default function OrderTotals( {order, tip } : OrderTotalsProps ) {
+export default function OrderTotals( { order, tip, placeOrder } : OrderTotalsProps ) {
     // useMemo para evitar renders adicionales
     /* Función para calcular el subtotal
     // pasamos dos parametros, total y item (que es el elemento donde estamos iterando)
@@ -39,7 +40,10 @@ export default function OrderTotals( {order, tip } : OrderTotalsProps ) {
                 </p>
             </div>
 
-            <button></button>
+            <button
+            className="w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled:opacity-25"
+            disabled={totalAmount === 0}
+            onClick={placeOrder}>Guardar orden</button>
         </>
     )
 }

@@ -7,7 +7,7 @@ import TipPercentageForm from "./components/TipPercentageForm";
 
 function App() {
 
-  const { order, addItem, removeItem, tip, setTip } = useOrder() // recibe del custom hook useOrder
+  const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder() // recibe del custom hook useOrder
 
   return (
     <>
@@ -27,19 +27,29 @@ function App() {
           </div>
         </div>
         <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
-          <OrderContents
-          order={order} // pasa el prop a OrderContents
-          removeItem={removeItem}
-          />
+        // Agregamos la validación desde App y y no desde OrderContents.tsx
+        // para prevenir que los componentes no se rendericen si no hay necesidad de hacerlo
+          {order.length > 0 ? (
+            <>
+              <OrderContents
+              order={order} // pasa el prop a OrderContents
+              removeItem={removeItem}
+              />
 
-          <TipPercentageForm
-          setTip={setTip} // pasamos la función que cambia tip
-          />
+              <TipPercentageForm
+              tip={tip}
+              setTip={setTip} // pasamos la función que cambia tip
+              />
 
-          <OrderTotals
-          order={order}
-          tip={tip} // pasamos la propina
-          />
+              <OrderTotals
+              order={order}
+              tip={tip} // pasamos la propina
+              placeOrder={placeOrder}
+              />
+            </>
+          ) : (
+            <p className="text-center">La orden esta vacía</p>
+          )}
         </div>
       </main>
     </>
